@@ -1,12 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:push_test_app/presentation/feature/push/push.dart';
-import 'package:push_test_app/presentation/main_screen.dart';
+import 'package:push_test_app/presentation/intro/intro_screen.dart';
+import 'package:push_test_app/presentation/main/main_screen.dart';
+import 'package:push_test_app/router/route_path.dart';
 
 // GoRouter configuration
 final router = GoRouter(
-  initialLocation: '/push',
+  initialLocation: RoutePath.intro,
   routes: [
+    GoRoute(
+      path: RoutePath.intro,
+      builder: (context, state) => const IntroScreen(),
+    ),
     GoRoute(
       path: '/',
       builder: (context, state) => MainScreen(

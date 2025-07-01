@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
@@ -26,9 +28,8 @@ class _PushState extends State<Push> {
     NotificationSettings settings = await messaging.requestPermission();
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      print('✅ 알림 권한 승인됨');
-    } else {
-      print('❌ 알림 권한 거부됨');
+      log('✅ 알림 권한 승인됨');
+      log('❌ 알림 권한 거부됨');
       return;
     }
 
@@ -37,11 +38,11 @@ class _PushState extends State<Push> {
       vapidKey:
           'BNThCgsJjPAeXOO7bikdWrP7ZDtitpf-KnXn5G2iGCf-fJoPwxhBHCmtEOyyLBXJhnok_zO1cGejSdqwNkz6ogU',
     );
-    print('📨 FCM Token: $_token');
+    log('📨 FCM Token: $_token');
 
     // 포그라운드 메시지 수신
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print('📩 포그라운드 메시지 수신: ${message.notification?.title}');
+      log('📩 포그라운드 메시지 수신: ${message.notification?.title}');
       setState(() {
         _message = message.notification?.title ?? '알림 수신';
       });
@@ -49,14 +50,14 @@ class _PushState extends State<Push> {
 
     // 알림 클릭 시 앱 열릴 때
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('🔔 클릭된 메시지: ${message.notification?.title}');
+      log('🔔 클릭된 메시지: ${message.notification?.title}');
     });
 
     // 종료 상태에서 시작 시 메시지 수신
     RemoteMessage? initialMessage =
         await FirebaseMessaging.instance.getInitialMessage();
     if (initialMessage != null) {
-      print('🚀 초기 메시지 수신: ${initialMessage.notification?.title}');
+      log('🚀 초기 메시지 수신: ${initialMessage.notification?.title}');
     }
 
     setState(() {});

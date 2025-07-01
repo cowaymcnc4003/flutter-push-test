@@ -39,6 +39,17 @@ dependencies:
   firebase_messaging: ^15.1.0
   permission_handler: ^12.0.0+1
 
+  provider: ^6.1.4
+  freezed_annotation: ^3.0.0
+  json_annotation: ^4.9.0
+  analyzer: ^6.0.0
+  dio: ^5.4.0
+  geolocator : ^9.0.2
+  
+  injectable: ^2.5.0
+  get_it: ^8.0.3
+  rxdart: ^0.28.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -49,6 +60,11 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
+
+  freezed: ^3.0.6
+  json_serializable: ^6.9.4
+  build_runner: ^2.4.6
+  injectable_generator: ^2.7.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -62,8 +78,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/image/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -77,11 +93,12 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/font/Roboto-Regular.ttf
+        - asset: assets/font/Roboto-SemiBold.ttf
+          weight: 700
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
