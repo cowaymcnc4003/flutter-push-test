@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:push_test_app/core/presentation/components/medium_button.dart';
@@ -69,10 +67,10 @@ class IntroScreen extends StatelessWidget {
                   child: MediumButton(
                     label: '등록',
                     onPressed: () {
-                      context.push('/push');
+                      context.push('/profile');
                     },
                   ),
-                )
+                ),
               ],
             ),
           )

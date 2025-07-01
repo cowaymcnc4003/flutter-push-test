@@ -3,11 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:push_test_app/presentation/feature/push/push.dart';
 import 'package:push_test_app/presentation/intro/intro_screen.dart';
 import 'package:push_test_app/presentation/main/main_screen.dart';
+import 'package:push_test_app/presentation/profile/profile_screen.dart';
 import 'package:push_test_app/router/route_path.dart';
 
 // GoRouter configuration
 final router = GoRouter(
-  initialLocation: RoutePath.intro,
+  initialLocation: RoutePath.profile,
   routes: [
     GoRoute(
       path: RoutePath.intro,
@@ -51,6 +52,16 @@ final router = GoRouter(
               path: '/push',
               builder: (context, state) {
                 return const Push();
+              },
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: RoutePath.profile,
+              builder: (context, state) {
+                return const ProfileScreen();
               },
             ),
           ],
