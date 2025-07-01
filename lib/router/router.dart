@@ -1,18 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:push_test_app/presentation/create/create_screen.dart';
 import 'package:push_test_app/presentation/feature/push/push.dart';
 import 'package:push_test_app/presentation/intro/intro_screen.dart';
 import 'package:push_test_app/presentation/main/main_screen.dart';
 import 'package:push_test_app/presentation/profile/profile_screen.dart';
 import 'package:push_test_app/router/route_path.dart';
 
-// GoRouter configuration
 final router = GoRouter(
-  initialLocation: RoutePath.profile,
+  initialLocation: RoutePath.intro,
   routes: [
     GoRoute(
       path: RoutePath.intro,
       builder: (context, state) => const IntroScreen(),
+    ),
+    GoRoute(
+      path: RoutePath.create,
+      builder: (context, state) => const CreateScreen(),
     ),
     GoRoute(
       path: '/',
@@ -28,7 +32,7 @@ final router = GoRouter(
           currentSelected: navigationShell.currentIndex,
           onDestinationSelected: (index) {
             navigationShell.goBranch(
-              index!,
+              index,
               initialLocation: index == navigationShell.currentIndex,
             );
           },
@@ -42,16 +46,6 @@ final router = GoRouter(
               path: '/home',
               builder: (context, state) {
                 return const Center(child: Text('home'));
-              },
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: '/push',
-              builder: (context, state) {
-                return const Push();
               },
             ),
           ],
