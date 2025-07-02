@@ -4,6 +4,7 @@ import 'package:push_test_app/presentation/create/create_screen.dart';
 import 'package:push_test_app/presentation/intro/intro_screen.dart';
 import 'package:push_test_app/presentation/main/main_screen.dart';
 import 'package:push_test_app/presentation/profile/profile_screen.dart';
+import 'package:push_test_app/presentation/push/screen/push_root.dart';
 import 'package:push_test_app/router/route_path.dart';
 
 final router = GoRouter(
@@ -42,9 +43,9 @@ final router = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: '/home',
+              path: RoutePath.push,
               builder: (context, state) {
-                return const Center(child: Text('home'));
+                return const PushRoot();
               },
             ),
           ],
