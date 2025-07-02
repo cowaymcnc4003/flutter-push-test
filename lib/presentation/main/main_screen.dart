@@ -22,7 +22,7 @@ class MainScreen extends StatelessWidget {
         backgroundColor: ColorStyle.primaryColor,
         shape: const CircleBorder(),
         child: Image.asset(
-          'image/add.png',
+          'assets/image/add.png',
           width: 24,
           height: 24,
         ),
@@ -43,8 +43,8 @@ class MainScreen extends StatelessWidget {
               IconButton(
                 icon: Image.asset(
                   currentSelected == 0
-                      ? 'image/nav_home_selected.png'
-                      : 'image/nav_home.png',
+                      ? 'assets/image/nav_home_selected.png'
+                      : 'assets/image/nav_home.png',
                   width: 24,
                   height: 24,
                 ),
@@ -56,8 +56,8 @@ class MainScreen extends StatelessWidget {
               IconButton(
                 icon: Image.asset(
                   currentSelected == 1
-                      ? 'image/nav_profile_selected.png'
-                      : 'image/nav_profile.png',
+                      ? 'assets/image/nav_profile_selected.png'
+                      : 'assets/image/nav_profile.png',
                   width: 24,
                   height: 24,
                 ),

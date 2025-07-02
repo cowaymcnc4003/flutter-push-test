@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:push_test_app/presentation/create/create_screen.dart';
-import 'package:push_test_app/presentation/feature/push/push.dart';
 import 'package:push_test_app/presentation/intro/intro_screen.dart';
 import 'package:push_test_app/presentation/main/main_screen.dart';
 import 'package:push_test_app/presentation/profile/profile_screen.dart';
