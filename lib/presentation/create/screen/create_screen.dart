@@ -1,21 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:push_test_app/presentation/create/create_viewmodel.dart';
+import 'package:provider/provider.dart';
+import 'package:push_test_app/presentation/create/create_view_model.dart';
+import 'package:push_test_app/ui/color_style.dart';
 import 'package:push_test_app/ui/text_styles.dart';
 import 'package:push_test_app/core/presentation/components/small_text_button_group.dart';
 
-class CreateScreen extends StatefulWidget {
+class CreateScreen extends StatelessWidget {
   const CreateScreen({super.key});
 
   @override
-  State<CreateScreen> createState() => _CreateScreenState();
-}
-
-class _CreateScreenState extends State<CreateScreen> {
-  late final CreateViewModel createViewModel = CreateViewModel();
-
-  @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<CreateViewModel>();
+
     return Scaffold(
       appBar: AppBar(title: const Text('푸시 생성')),
       body: SingleChildScrollView(
@@ -26,13 +23,9 @@ class _CreateScreenState extends State<CreateScreen> {
               height: 200,
               child: CupertinoTimerPicker(
                 mode: CupertinoTimerPickerMode.hm,
-                initialTimerDuration: createViewModel.selectedTime,
+                initialTimerDuration: viewModel.selectedTime,
                 minuteInterval: 5,
-                onTimerDurationChanged: (Duration newTime) {
-                  setState(() {
-                    createViewModel.selectedTime = newTime;
-                  });
-                },
+                onTimerDurationChanged: viewModel.updateTime,
               ),
             ),
             const SizedBox(height: 20),
@@ -45,9 +38,8 @@ class _CreateScreenState extends State<CreateScreen> {
             const SizedBox(height: 10),
             SmallTextButtonGroup(
               options: const ['All', 'User'],
-              onChanged: (selected) {
-                createViewModel.selectedTarget = selected;
-              },
+              selectedTarget: viewModel.selectedTarget,
+              onChanged: viewModel.updateTarget,
             ),
             const SizedBox(height: 20),
 
@@ -59,9 +51,8 @@ class _CreateScreenState extends State<CreateScreen> {
             const SizedBox(height: 10),
             SmallTextButtonGroup(
               options: const ['none', 'daily', 'weekly'],
-              onChanged: (selected) {
-                createViewModel.selectedRepeat = selected;
-              },
+              selectedTarget: viewModel.selectedRepeat,
+              onChanged: viewModel.updateRepeat,
             ),
             const SizedBox(height: 20),
 
@@ -76,10 +67,10 @@ class _CreateScreenState extends State<CreateScreen> {
                 const Icon(Icons.calendar_today, color: Colors.teal),
                 const SizedBox(width: 10),
                 TextButton(
-                  onPressed: _selectStartDate,
-                  child: const Text(
-                    "111",
-                    style: TextStyle(color: Color.fromARGB(255, 14, 7, 7)),
+                  onPressed: () => _selectStartDate(context, viewModel),
+                  child: Text(
+                    "${viewModel.startDate.toLocal()}".split(' ')[0],
+                    style: const TextStyle(color: Colors.black),
                   ),
                 ),
               ],
@@ -98,10 +89,10 @@ class _CreateScreenState extends State<CreateScreen> {
                 const Icon(Icons.calendar_today, color: Colors.teal),
                 const SizedBox(width: 10),
                 TextButton(
-                  onPressed: _selectEndDate,
-                  child: const Text(
-                    "111",
-                    style: TextStyle(color: Colors.black),
+                  onPressed: () => _selectEndDate(context, viewModel),
+                  child: Text(
+                    "${viewModel.endDate.toLocal()}".split(' ')[0],
+                    style: const TextStyle(color: Colors.black),
                   ),
                 ),
               ],
@@ -130,31 +121,29 @@ class _CreateScreenState extends State<CreateScreen> {
     );
   }
 
-  Future<void> _selectStartDate() async {
+  Future<void> _selectStartDate(
+      BuildContext context, CreateViewModel viewModel) async {
     final picked = await showDatePicker(
       context: context,
-      initialDate: createViewModel.startDate,
+      initialDate: viewModel.startDate,
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
     );
     if (picked != null) {
-      setState(() {
-        createViewModel.startDate = picked;
-      });
+      viewModel.updateStartDate(picked);
     }
   }
 
-  Future<void> _selectEndDate() async {
+  Future<void> _selectEndDate(
+      BuildContext context, CreateViewModel viewModel) async {
     final picked = await showDatePicker(
       context: context,
-      initialDate: createViewModel.endDate,
+      initialDate: viewModel.endDate,
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
     );
     if (picked != null) {
-      setState(() {
-        createViewModel.endDate = picked;
-      });
+      viewModel.updateEndDate(picked);
     }
   }
 }

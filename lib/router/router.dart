@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:push_test_app/presentation/create/create_screen.dart';
+import 'package:push_test_app/presentation/create/screen/create_root.dart';
 import 'package:push_test_app/presentation/intro/intro_screen.dart';
 import 'package:push_test_app/presentation/main/main_screen.dart';
 import 'package:push_test_app/presentation/profile/profile_screen.dart';
@@ -13,10 +13,6 @@ final router = GoRouter(
     GoRoute(
       path: RoutePath.intro,
       builder: (context, state) => const IntroScreen(),
-    ),
-    GoRoute(
-      path: RoutePath.create,
-      builder: (context, state) => const CreateScreen(),
     ),
     GoRoute(
       path: '/',
@@ -56,6 +52,16 @@ final router = GoRouter(
               path: RoutePath.profile,
               builder: (context, state) {
                 return const ProfileScreen();
+              },
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: RoutePath.create,
+              builder: (context, state) {
+                return const CreateRoot();
               },
             ),
           ],

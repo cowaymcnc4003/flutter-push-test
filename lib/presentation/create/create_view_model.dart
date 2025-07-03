@@ -14,21 +14,25 @@ class CreateViewModel extends ChangeNotifier {
 
   void updateTarget(String target) {
     selectedTarget = target;
+    print("selectedTarget = $selectedTarget");
     notifyListeners();
   }
 
   void updateRepeat(String repeat) {
     selectedRepeat = repeat;
+    print("selectedRepeat = $selectedRepeat");
     notifyListeners();
   }
 
   void updateStartDate(DateTime date) {
     startDate = date;
+    print("startDate = $startDate");
     notifyListeners();
   }
 
   void updateEndDate(DateTime date) {
     endDate = date;
+    print("endDate = $endDate");
     notifyListeners();
   }
 }
