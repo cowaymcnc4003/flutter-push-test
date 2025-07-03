@@ -4,10 +4,12 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:push_test_app/core/di/di_setup.dart';
 import 'package:push_test_app/router/router.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
+  diSetup();
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);

@@ -1,25 +1,22 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:push_test_app/core/presentation/components/search_input_filed.dart';
 import 'package:push_test_app/presentation/push/push_action.dart';
 import 'package:push_test_app/presentation/push/push_state.dart';
+import 'package:push_test_app/presentation/push/push_view_model.dart';
 import 'package:push_test_app/ui/color_style.dart';
 import 'package:push_test_app/ui/text_styles.dart';
 
 class PushScreen extends StatelessWidget {
-  final PushState state;
-  final TextEditingController? controller;
-  final void Function(PushAction action) onAction;
   const PushScreen({
     super.key,
-    required this.state,
-    required this.controller,
-    required this.onAction,
   });
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<PushViewModel>();
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -46,10 +43,11 @@ class PushScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: SearchInputFiled(
-                      controller: controller,
+                      controller: viewModel.controller,
                       placeHolder: "Search",
                       onChanged: (value) {
-                        return onAction(PushAction.onTextChanged(value));
+                        return viewModel
+                            .onAction(PushAction.onTextChanged(value));
                       },
                     ),
                   ),
@@ -67,11 +65,11 @@ class PushScreen extends StatelessWidget {
               const SizedBox(
                 height: 15,
               ),
-              Text(state.query),
+              Text(viewModel.pushState.query),
               ElevatedButton(
                   onPressed: () {
-                    log(state.pushSchedule.toString());
-                    controller!.text = '2234324';
+                    log(viewModel.pushState.pushSchedule.toString());
+                    viewModel.controller.text = '2234324';
                   },
                   child: const Text('click me'))
             ],
