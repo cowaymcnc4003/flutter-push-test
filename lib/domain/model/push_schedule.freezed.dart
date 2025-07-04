@@ -21,9 +21,9 @@ mixin _$PushSchedule {
   String get platform;
   String get userId;
   String get target;
-  String get scheduleAt;
-  String get startTime;
-  String get endTime;
+  DateTime get scheduleAt;
+  DateTime get startTime;
+  DateTime get endTime;
   String get repeat;
   bool get isSent;
 
@@ -79,11 +79,11 @@ abstract mixin class $PushScheduleCopyWith<$Res> {
       String message,
       String platform,
       String userId,
+      DateTime scheduleAt,
       String target,
-      String scheduleAt,
-      String startTime,
-      String endTime,
+      DateTime startTime,
       String repeat,
+      DateTime endTime,
       bool isSent});
 }
 
@@ -104,11 +104,11 @@ class _$PushScheduleCopyWithImpl<$Res> implements $PushScheduleCopyWith<$Res> {
     Object? message = null,
     Object? platform = null,
     Object? userId = null,
-    Object? target = null,
     Object? scheduleAt = null,
+    Object? target = null,
     Object? startTime = null,
-    Object? endTime = null,
     Object? repeat = null,
+    Object? endTime = null,
     Object? isSent = null,
   }) {
     return _then(PushSchedule(
@@ -132,26 +132,26 @@ class _$PushScheduleCopyWithImpl<$Res> implements $PushScheduleCopyWith<$Res> {
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      scheduleAt: null == scheduleAt
+          ? _self.scheduleAt
+          : scheduleAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       target: null == target
           ? _self.target
           : target // ignore: cast_nullable_to_non_nullable
               as String,
-      scheduleAt: null == scheduleAt
-          ? _self.scheduleAt
-          : scheduleAt // ignore: cast_nullable_to_non_nullable
-              as String,
       startTime: null == startTime
           ? _self.startTime
           : startTime // ignore: cast_nullable_to_non_nullable
-              as String,
-      endTime: null == endTime
-          ? _self.endTime
-          : endTime // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
       repeat: null == repeat
           ? _self.repeat
           : repeat // ignore: cast_nullable_to_non_nullable
               as String,
+      endTime: null == endTime
+          ? _self.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       isSent: null == isSent
           ? _self.isSent
           : isSent // ignore: cast_nullable_to_non_nullable

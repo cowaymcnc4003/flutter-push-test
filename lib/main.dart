@@ -9,13 +9,12 @@ import 'package:push_test_app/router/router.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
-  diSetup();
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FirebaseMessaging.instance.setAutoInitEnabled(true);
-
   final fcmToken = await FirebaseMessaging.instance.getToken();
+  diSetup();
   log("FCM Token: $fcmToken");
 
   runApp(const MyApp());

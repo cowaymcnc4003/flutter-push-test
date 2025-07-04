@@ -12,11 +12,11 @@ PushSchedule _$PushScheduleFromJson(Map<String, dynamic> json) => PushSchedule(
       message: json['message'] as String,
       platform: json['platform'] as String,
       userId: json['userId'] as String,
+      scheduleAt: DateTime.parse(json['scheduleAt'] as String),
       target: json['target'] as String,
-      scheduleAt: json['scheduleAt'] as String,
-      startTime: json['startTime'] as String,
-      endTime: json['endTime'] as String,
+      startTime: DateTime.parse(json['startTime'] as String),
       repeat: json['repeat'] as String,
+      endTime: DateTime.parse(json['endTime'] as String),
       isSent: json['isSent'] as bool,
     );
 
@@ -28,9 +28,9 @@ Map<String, dynamic> _$PushScheduleToJson(PushSchedule instance) =>
       'platform': instance.platform,
       'userId': instance.userId,
       'target': instance.target,
-      'scheduleAt': instance.scheduleAt,
-      'startTime': instance.startTime,
-      'endTime': instance.endTime,
+      'scheduleAt': instance.scheduleAt.toIso8601String(),
+      'startTime': instance.startTime.toIso8601String(),
+      'endTime': instance.endTime.toIso8601String(),
       'repeat': instance.repeat,
       'isSent': instance.isSent,
     };

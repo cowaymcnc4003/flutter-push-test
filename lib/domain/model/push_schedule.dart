@@ -13,9 +13,9 @@ class PushSchedule with _$PushSchedule {
   final String platform;
   final String userId;
   final String target;
-  final String scheduleAt;
-  final String startTime;
-  final String endTime;
+  final DateTime scheduleAt;
+  final DateTime startTime;
+  final DateTime endTime;
   final String repeat;
   final bool isSent;
 
@@ -25,11 +25,11 @@ class PushSchedule with _$PushSchedule {
     required this.message,
     required this.platform,
     required this.userId,
-    required this.target,
     required this.scheduleAt,
+    required this.target,
     required this.startTime,
-    required this.endTime,
     required this.repeat,
+    required this.endTime,
     required this.isSent,
   });
 
