@@ -22,6 +22,10 @@ final router = GoRouter(
         child: const Center(child: Text('mainScreen')),
       ),
     ),
+    GoRoute(
+      path: RoutePath.create,
+      builder: (context, state) => const CreateRoot(),
+    ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         return MainScreen(
@@ -56,16 +60,16 @@ final router = GoRouter(
             ),
           ],
         ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: RoutePath.create,
-              builder: (context, state) {
-                return const CreateRoot();
-              },
-            ),
-          ],
-        ),
+        // StatefulShellBranch(
+        //   routes: [
+        //     GoRoute(
+        //       path: RoutePath.create,
+        //       builder: (context, state) {
+        //         return const CreateRoot();
+        //       },
+        //     ),
+        //   ],
+        // ),
       ],
     ),
   ],
