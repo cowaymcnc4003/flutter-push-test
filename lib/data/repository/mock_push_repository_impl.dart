@@ -52,4 +52,19 @@ class MockPushRepositoryImpl implements PushRepository {
   Future<List<PushSchedule>> getPushSchedules() async {
     return _mockData.map((e) => PushSchedule.fromJson(e)).toList();
   }
+
+  @override
+  Future<void> createPushSchedule(PushSchedule schedule) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> deletePushSchedule(String id) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> updatePushSchedule(PushSchedule schedule) {
+    throw UnimplementedError();
+  }
 }

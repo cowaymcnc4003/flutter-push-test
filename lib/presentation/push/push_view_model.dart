@@ -33,6 +33,8 @@ class PushViewModel with ChangeNotifier {
     _pushState = pushState.copyWith(
         pushSchedule: await _pushRepository.getPushSchedules());
 
+    print(await _pushRepository.getPushSchedule("push002"));
+
     notifyListeners();
   }
 
